@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Volume2, VolumeX } from "lucide-react";
+import logo from "../../logo.png";
 
 const GLTFModelViewer = () => {
   const mountRef = useRef(null);
@@ -76,7 +77,7 @@ const GLTFModelViewer = () => {
     };
 
     // Add multiple event listeners for better interaction handling
-    const events = ["click", "touchstart", "keydown"];
+    const events = ["click", "touchstart", "keydown", "resize", "load"];
     events.forEach((event) => {
       window.addEventListener(event, handleUserInteraction, { once: true });
     });
@@ -192,7 +193,7 @@ const GLTFModelViewer = () => {
     // Cleanup
     return () => {
       console.log("Cleaning up Three.js resources");
-      window.removeEventListener("resize", handleResize);
+      // window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
 
       scene.traverse((object) => {
@@ -222,7 +223,17 @@ const GLTFModelViewer = () => {
       <div
         style={{
           position: "absolute",
-          top: "15%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: 10,
+        }}
+        className=""
+      >
+        <img src={logo} className="logoimg" />
+      </div>
+      <div
+        style={{
+          position: "absolute",
           left: "50%",
           transform: "translate(-50%, -50%)",
           zIndex: 10,
@@ -230,17 +241,16 @@ const GLTFModelViewer = () => {
           textAlign: "top",
           animation: "float 3s, textGlow 2s ease-in-out infinite alternate",
           textShadow: "0 0 20px #FFFFFF", // Modify here by using a different approach for important
-          letterSpacing: "6px",
+          letterSpacing: "1px",
         }}
-        className="txt "
+        className="dt txt"
       >
-        08/11/24
+        08/11
       </div>
       {/* Text Overlay */}
       <div
         style={{
           position: "absolute",
-          bottom: "0%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           zIndex: 10,
@@ -256,7 +266,7 @@ const GLTFModelViewer = () => {
       </div>
 
       {/* Audio control button */}
-      <button
+      {/* <button
         onClick={toggleMute}
         style={{
           position: "absolute",
@@ -288,7 +298,7 @@ const GLTFModelViewer = () => {
         ) : (
           <Volume2 size={24} color="white" />
         )}
-      </button>
+      </button> */}
 
       {/* Main canvas container */}
       <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
