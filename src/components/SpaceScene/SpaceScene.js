@@ -136,7 +136,7 @@ const GLTFModelViewer = () => {
     // GLTF Loader
     const loader = new GLTFLoader();
     loader.load(
-      "/space_boi/scene.gltf",
+    "/space_boi/scene.gltf",
       (gltf) => {
         modelRef.current = gltf.scene;
         scene.add(gltf.scene);
@@ -266,7 +266,7 @@ const GLTFModelViewer = () => {
       </div>
 
       {/* Audio control button */}
-      {/* <button
+      <button
         onClick={toggleMute}
         style={{
           position: "absolute",
@@ -298,7 +298,7 @@ const GLTFModelViewer = () => {
         ) : (
           <Volume2 size={24} color="white" />
         )}
-      </button> */}
+      </button>
 
       {/* Main canvas container */}
       <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
